@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataGridSample"
+             xmlns:sfgrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="DataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel x:Name="viewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <StackLayout Orientation="Vertical" >
+        <sfgrid:SfDataGrid x:Name="dataGrid" 
+                           ColumnSizer="Auto"
+                           AllowDraggingRow="True" BackgroundColor="Yellow"
+                           AllowSorting="True"
+                           AllowEditing="True"
+                           AllowDraggingColumn="True"
+                           ItemsSource="{Binding OrdersInfo}" 
+                           AutoGenerateColumns="False" 
+                           AllowGroupExpandCollapse="True"
+                           SelectionMode="Single">
+            <sfgrid:SfDataGrid.Columns>
+                
+                <!--<sfgrid:GridPickerColumn ItemsSource="{Binding CustomerNames, Source={x:Reference viewModel}}" MappingName="Customer" HeaderText="Customer"/>-->
+                <sfgrid:GridTextColumn HeaderText="Order ID" MappingName="OrderID" />
+                <sfgrid:GridTextColumn HeaderText="EmployeeID" MappingName="EmployeeID" />
+                <sfgrid:GridTextColumn HeaderText="CustomerID" MappingName="CustomerID"/>
+                <sfgrid:GridTextColumn HeaderText="First Name"  MappingName="FirstName"/>
+                <sfgrid:GridTextColumn HeaderText="Last Name" MappingName="LastName"/>
+                <sfgrid:GridImageColumn MappingName="DealerImage"  DisplayBinding="{Binding DealerImage, Converter={StaticResource imageConverter}}" /> 
+
+            </sfgrid:SfDataGrid.Columns>
+
+
+        </sfgrid:SfDataGrid>
+
+
+
+    </StackLayout>
+
+</ContentPage>
